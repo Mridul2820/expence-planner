@@ -12,17 +12,19 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Flutter Demo'),
         ),
-        body: Column(
-          children: [
-            Card(
-              child: Container(
-                width: double.infinity,
-                child: Text('CHARTS'),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Card(
+                child: Container(
+                  width: double.infinity,
+                  child: Text('CHARTS'),
+                ),
+                elevation: 5,
               ),
-              elevation: 5,
-            ),
-            UserTransaction(),
-          ],
+              UserTransaction(),
+            ],
+          ),
         ),
       ),
     );
