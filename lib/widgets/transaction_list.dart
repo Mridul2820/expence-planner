@@ -4,8 +4,9 @@ import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
+  final Function deleteTx;
 
-  TransactionList(this.transactions);
+  TransactionList(this.transactions, this.deleteTx);
 
   @override
   Widget build(BuildContext context) {
@@ -57,22 +58,30 @@ class TransactionList extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            transactions[index].title,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          Text(
-                            DateFormat.yMd()
-                                .add_jm()
-                                .format(transactions[index].date),
-                            style: TextStyle(
-                              color: Colors.grey,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              transactions[index].title,
+                              style: Theme.of(context).textTheme.headline6,
                             ),
-                          ),
-                        ],
+                            Text(
+                              DateFormat.yMMMEd()
+                                  .format(transactions[index].date),
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () => deleteTx(
+                          transactions[index].id,
+                        ),
+                        icon: Icon(Icons.delete),
+                        color: Theme.of(context).errorColor,
                       ),
                     ],
                   ),
